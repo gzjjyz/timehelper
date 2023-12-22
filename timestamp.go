@@ -8,6 +8,18 @@ import (
 	"time"
 )
 
+func Now() time.Time {
+	return time.Now()
+}
+
+func NowSec() uint32 {
+	return uint32(time.Now().Unix())
+}
+
+func Weekday() time.Weekday {
+	return time.Now().Weekday()
+}
+
 func GetZeroTime(timestamp int64) time.Time {
 	t := time.Unix(timestamp, 0)
 	return time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
@@ -54,8 +66,13 @@ func TimeToStr(nTime uint32) string {
 	return time.Unix(t, 0).Format("2006-01-02 15:04:05")
 }
 
-// GetDaysZeroTime 获取几天后的零点时间戳
+// GetDaysZeroTime 获取几天后的零点时间
 func GetDaysZeroTime(day int) time.Time {
 	t := time.Now().AddDate(0, 0, day)
 	return time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
+}
+
+// GetBeforeDaysZeroTime 获取几天前的零点时间戳
+func GetBeforeDaysZeroTime(day uint32) uint32 {
+	return uint32(GetZeroTime(time.Now().Unix()).Unix()) - (86400 * day)
 }
