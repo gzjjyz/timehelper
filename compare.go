@@ -34,5 +34,5 @@ func TimestampSubDays(t1, t2 int64) int32 {
 		t2, t1 = t1, t2
 	}
 
-	return int32(GetZeroTime(t2)/86400.0 - GetZeroTime(t1)/86400.0)
+	return int32(GetZeroTime(t2).Unix()/86400.0 - GetZeroTime(t1).Unix()/86400.0)
 }
